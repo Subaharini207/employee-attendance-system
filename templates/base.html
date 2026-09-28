@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Attendify Pro</title><link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}"></head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+<div class="brand">◉ Attendify <span>PRO</span></div>
+<div class="side-label">MAIN</div>
+<a href="/dashboard">⌂ Dashboard</a><a href="/employees">♙ Employees</a><a href="/attendance">◷ Attendance</a><a href="/leave">▣ Leave Management</a><a href="/payroll">₹ Payroll</a><a href="/reports">▤ Reports</a>
+<div class="side-label">SYSTEM</div><a href="/logout">↪ Logout</a>
+</aside>
+<main class="main"><header><div><h1>{% block heading %}Dashboard{% endblock %}</h1><p class="muted">Employee Attendance Management System</p></div><div class="user">ADMIN <b>AD</b></div></header>
+{% with messages=get_flashed_messages() %}{% if messages %}<div class="flash">{{ messages[-1] }}</div>{% endif %}{% endwith %}
+{% block content %}{% endblock %}
+</main></div></body></html>
