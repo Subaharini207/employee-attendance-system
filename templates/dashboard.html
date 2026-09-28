@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block heading %}Dashboard{% endblock %}{% block content %}
+<div class="grid cards">
+<div class="card stat"><div class="icon">♙</div><div><small>TOTAL EMPLOYEES</small><strong>{{s.total}}</strong><em>Registered employees</em></div></div>
+<div class="card stat"><div class="icon green">✓</div><div><small>PRESENT TODAY</small><strong>{{s.present}}</strong><em>Checked in today</em></div></div>
+<div class="card stat"><div class="icon red">!</div><div><small>ABSENT TODAY</small><strong>{{s.absent}}</strong><em>Not present</em></div></div>
+<div class="card stat"><div class="icon orange">◷</div><div><small>LATE TODAY</small><strong>{{s.late}}</strong><em>After 9:15 AM</em></div></div>
+</div>
+<div class="grid two"><div class="card"><div class="card-title">Quick Actions</div><div class="actions"><a class="action" href="/employees">＋ Add Employee</a><a class="action" href="/attendance">✓ Mark Attendance</a><a class="action" href="/leave">▣ Leave Requests</a><a class="action" href="/payroll">₹ View Payroll</a></div></div>
+<div class="card"><div class="card-title">Today's Overview</div><div class="progress-row"><span>Present</span><b>{{s.present}} / {{s.total}}</b></div><div class="progress"><i style="width:{{ (s.present/s.total*100) if s.total else 0 }}%"></i></div><p class="muted">Approved leave today: {{s.leave}}</p></div></div>
+<div class="card"><div class="card-title">Recent Attendance</div><table><tr><th>Employee</th><th>Department</th><th>Date</th><th>Check In</th><th>Check Out</th><th>Hours</th></tr>{% for r in recent %}<tr><td>{{r.name or r.emp_id}}</td><td>{{r.department or '-'}}</td><td>{{r.date}}</td><td>{{r.check_in or '-'}}</td><td>{{r.check_out or '-'}}</td><td>{{r.hours}}</td></tr>{% else %}<tr><td colspan="6" class="empty">No attendance records yet.</td></tr>{% endfor %}</table></div>
+{% endblock %}

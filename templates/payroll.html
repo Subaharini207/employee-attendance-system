@@ -1,0 +1,3 @@
+{% extends "base.html" %}{% block heading %}Payroll Support{% endblock %}{% block content %}
+<div class="card"><div class="card-title">Estimated Payroll — {{month}}</div><p class="muted">Demo calculation: ₹25,000 basic salary × present days / 26 working days.</p><table><tr><th>Employee</th><th>Department</th><th>Present Days</th><th>Working Hours</th><th>Estimated Salary</th></tr>{% for x in data %}<tr><td>{{x.emp.name}}</td><td>{{x.emp.department}}</td><td>{{x.present}}</td><td>{{x.hours}}</td><td><b>₹{{"{:,.2f}".format(x.salary)}}</b></td></tr>{% else %}<tr><td colspan="5" class="empty">Add employees and attendance to see payroll.</td></tr>{% endfor %}</table></div>
+{% endblock %}

@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block heading %}Reports{% endblock %}{% block content %}
+<div class="grid cards"><div class="card stat"><div><small>RECORDS</small><strong>{{rows|length}}</strong><em>Attendance entries</em></div></div><div class="card stat"><div><small>WORK HOURS</small><strong>{{"{:,.1f}".format(rows|sum(attribute='hours'))}}</strong><em>Total recorded hours</em></div></div></div>
+<div class="card"><div class="card-title">Attendance Report</div><table><tr><th>Date</th><th>Employee</th><th>Department</th><th>Check In</th><th>Check Out</th><th>Hours</th><th>Status</th></tr>{% for r in rows %}<tr><td>{{r.date}}</td><td>{{r.name or r.emp_id}}</td><td>{{r.department or '-'}}</td><td>{{r.check_in}}</td><td>{{r.check_out or '-'}}</td><td>{{r.hours}}</td><td>{{r.status}}</td></tr>{% else %}<tr><td colspan="7" class="empty">No data available.</td></tr>{% endfor %}</table></div>
+{% endblock %}
